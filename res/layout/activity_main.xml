@@ -43,25 +43,15 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitXY"
-        android:src="@drawable/coqueiro_cocos" />	        
-
-    <Button
-        android:id="@+id/chickaChickaButton"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"                
-        android:onClick="chickaBoomButton_onClick"
-        android:background="@drawable/btnboom"
-        />
+        android:src="@drawable/coqueiro_cocos" />
     
     <Button
         android:id="@+id/playMusicaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"      
+        android:layout_alignParentTop="true"
         android:onClick="btPlayMusica_onClick"
-        android:layout_toLeftOf="@+id/chickaChickaButton"
         android:text="Play" />
 
     <Button
@@ -107,5 +97,50 @@
         android:scrollbarAlwaysDrawVerticalTrack="false"
         android:visibility="gone" 
         android:onClick="fechaVideoPlayer_onClick"/>
+
+    <Button
+        android:id="@+id/chickaChickaButton"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/btnboom"
+        android:onClick="chickaBoomButton_onClick" />
+
+    <ImageView
+        android:id="@+id/ivChicka1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/coqueiro"
+        android:layout_below="@+id/chickaChickaButton"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/chicka" />
+
+    <ImageView
+        android:id="@+id/ivChicka2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivChicka1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:src="@drawable/chicka" />
+
+    <ImageView
+        android:id="@+id/ivBoom1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/coqueiro"
+        android:layout_centerVertical="true"
+        android:src="@drawable/boom1" />
+
+    <ImageView
+        android:id="@+id/ivBoom2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/videoMusicaSpinner"
+        android:layout_below="@+id/ivBoom1"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/boom2" />
 
 </RelativeLayout>

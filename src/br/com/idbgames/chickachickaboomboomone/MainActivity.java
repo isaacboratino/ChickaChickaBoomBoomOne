@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 import java.util.Random;
 
 import br.com.idbgames.chickachickaboomboomone.R;
+import com.nineoldandroids.animation.*;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -129,6 +131,7 @@ public class MainActivity extends Activity implements OnTouchListener {
                         @Override
                         public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
                         	videoMusicaSelecionada = mySpinner.getSelectedItemPosition()+1;
+                        	((Button)findViewById(R.id.playMusicaButton)).setText("Play");
                         	PlayMusica("mccbb"+videoMusicaSelecionada);
                         }
 
@@ -230,7 +233,6 @@ public class MainActivity extends Activity implements OnTouchListener {
 	
 	public void btPlayMusica_onClick(View v)
 	{
-		//playMusicVids.playBeep("ccbb-explosion");
 		PlayMusica("mccbb"+videoMusicaSelecionada);
 	}
 	
@@ -239,8 +241,14 @@ public class MainActivity extends Activity implements OnTouchListener {
 		Button btMusicaPlay = (Button)findViewById(R.id.playMusicaButton);
 		Button btVideoPlay = (Button)findViewById(R.id.playVideoButton);
 		
-		if (btMusicaPlay.getText().equals("Play"))
-		{			
+		if (btMusicaPlay.getText().equals("Stop"))
+		{	
+			playMusicVids.stopAll();
+			btMusicaPlay.setText("Play");
+		}
+		else
+		{
+			
 			playMusicVids.stopAll();
 
 			// Roda o video
@@ -252,11 +260,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 
 			// seta o botão do video para play
 			btVideoPlay.setText("Video");
-		}
-		else
-		{
-			playMusicVids.stopAll();
-			btMusicaPlay.setText("Play");
+
 		}
 	}
 		
@@ -293,6 +297,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 			playMusicVids.stopAll();
 			btVideoPlay.setText("Video");			
 			btMusicaPlay.setText("Play");
+			PlayMusica("mccbb"+videoMusicaSelecionada);
 		}
 	}
 	
@@ -306,9 +311,35 @@ public class MainActivity extends Activity implements OnTouchListener {
 		btVideoPlay.setText("Video");			
 		btMusicaPlay.setText("Play");
 		
-		playMusicVids.playMusic("musicas", "boom", "3gp");		
+		playMusicVids.playMusic("musicas", "boom", "3gp");
+		
+		AnimacaoChickaBoom();
+		
 		// Reposiciona as letras em seus lugares
 		setTimer(7000);	    
+	}
+	
+	public void AnimacaoChickaBoom()
+	{
+		ImageView ivCHicka1 = (ImageView)findViewById(R.id.ivChicka1);
+		ImageView ivCHicka2 = (ImageView)findViewById(R.id.ivChicka2);
+		ImageView ivBoom1 = (ImageView)findViewById(R.id.ivBoom1);
+		ImageView ivBoom2 = (ImageView)findViewById(R.id.ivBoom2);
+		
+		AnimatorSet set = new AnimatorSet();
+		set.playTogether(
+		    ObjectAnimator.ofFloat(ivCHicka1, "translationX", 0, 90),
+		    ObjectAnimator.ofFloat(ivCHicka1, "translationY", 0, 90),
+		    ObjectAnimator.ofFloat(ivCHicka1, "scaleX", 1, 1.5f),
+		    ObjectAnimator.ofFloat(ivCHicka1, "scaleY", 1, 0.5f),
+		    
+		    ObjectAnimator.ofFloat(ivCHicka2, "translationX", 0, 120),
+		    ObjectAnimator.ofFloat(ivCHicka2, "translationY", 0, 190),
+		    ObjectAnimator.ofFloat(ivCHicka2, "scaleX", 1, 1.5f),
+		    ObjectAnimator.ofFloat(ivCHicka2, "scaleY", 1, 0.5f)
+		    //ObjectAnimator.ofFloat(ivCHicka1, "alpha", 1, 0.25f, 1)
+		);
+		set.setDuration(7000).start();
 	}
 	
 	// SetTimeout do android :\
